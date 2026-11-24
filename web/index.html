@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18161e">
+  <meta name="description" content="Play an original 6502 surfing game on a browser-based NES console.">
+  <title>Reef Runner 6502 · SurfingCoder Arcade</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/jsnes-2.1.0.min.js"></script>
+  <script defer src="player.js"></script>
+</head>
+<body class="reef-page">
+  <main class="reef-shell">
+    <header class="reef-heading">
+      <div>
+        <p class="reef-kicker">SurfingCoder Arcade</p>
+        <h1>Reef Runner <span>6502</span></h1>
+        <p>Paddle into Amethyst Point, time your takeoff, and steer through the break.</p>
+      </div>
+      <a href="https://github.com/netcodermike/reef-runner-6502">Game source ↗</a>
+    </header>
+
+    <div class="reef-layout">
+      <section class="reef-console" aria-label="NES game">
+        <div class="reef-toolbar">
+          <button class="reef-primary" id="reef-play" type="button">Play Reef Runner</button>
+          <button id="reef-reset" type="button" disabled>Reset</button>
+          <button id="reef-sound" type="button" aria-pressed="true">Sound on</button>
+        </div>
+        <div class="reef-screen">
+          <canvas id="reef-display" width="256" height="240" tabindex="0" aria-label="Reef Runner game screen" aria-describedby="reef-keyboard">
+            This browser needs canvas support to display the NES game.
+          </canvas>
+        </div>
+        <p class="reef-status" id="reef-status" role="status">Press Play to load the cartridge.</p>
+      </section>
+
+      <section class="reef-controls" aria-labelledby="reef-controls-heading">
+        <h2 id="reef-controls-heading">Controls</h2>
+        <p class="reef-objective">Stay with the moving pocket to score. Dodge the reef through a 30-second ride.</p>
+        <dl class="reef-keyboard" id="reef-keyboard">
+          <div><dt>Steer</dt><dd>Arrow keys</dd></div>
+          <div><dt>Take off when the pocket turns gold</dt><dd><kbd>Z</kbd> or <kbd>A</kbd></dd></div>
+          <div><dt>Start a run</dt><dd><kbd>Enter</kbd></dd></div>
+        </dl>
+        <div class="reef-controller" role="group" aria-label="On-screen NES controller">
+          <div class="reef-dpad">
+            <button class="reef-up" type="button" data-button="UP" aria-label="Up" disabled>↑</button>
+            <button class="reef-left" type="button" data-button="LEFT" aria-label="Left" disabled>←</button>
+            <button class="reef-right" type="button" data-button="RIGHT" aria-label="Right" disabled>→</button>
+            <button class="reef-down" type="button" data-button="DOWN" aria-label="Down" disabled>↓</button>
+          </div>
+          <div class="reef-controller-actions">
+            <button class="reef-action" type="button" data-button="A" aria-label="A, take off" disabled>A</button>
+            <button type="button" data-button="START" disabled>Start</button>
+          </div>
+        </div>
+        <p class="reef-credit">Runs the original cartridge with <a href="https://github.com/bfirsh/jsnes/tree/v2.1.0">JSNES</a>.</p>
+      </section>
+    </div>
+    <noscript><p>Enable JavaScript to play Reef Runner in the browser.</p></noscript>
+  </main>
+</body>
+</html>

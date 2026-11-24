@@ -1,0 +1,23 @@
+name: Build and verify NES cartridge
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install cc65
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cc65
+      - name: Rebuild original graphics and check the ROM
+        run: |
+          python3 assets/generate_chr.py
+          git diff --exit-code -- assets/reef-runner.chr
+          python3 build.py --check --labels "$RUNNER_TEMP/reef-runner.lbl"
+          node tests/playthrough.mjs "$RUNNER_TEMP/reef-runner.lbl"
